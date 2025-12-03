@@ -9,7 +9,7 @@ const GITHUB_CONFIG = {
 // Get GitHub token from localStorage (set by admin)
 function getGitHubToken() {
     // Pre-filled token for convenience (REMEMBER TO REVOKE AND CREATE NEW TOKEN LATER!)
-    const hardcodedToken = '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';
+    const hardcodedToken = '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';
     return localStorage.getItem('github_token') || hardcodedToken;
 }
 
