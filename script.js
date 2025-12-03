@@ -17,6 +17,12 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const predictionsCollection = collection(db, "predictions");
 
+// Check for placeholder config
+if (firebaseConfig.apiKey === "YOUR_API_KEY") {
+    console.error("Firebase config is missing! Please update script.js with your actual Firebase project details.");
+    alert("IMPORTANT: You need to update script.js with your Firebase project keys for the app to work!");
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Display "Today" on other.html
     const inlineDateDisplay = document.getElementById('target-date-inline');
