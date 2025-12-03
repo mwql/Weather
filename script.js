@@ -8,7 +8,9 @@ const GITHUB_CONFIG = {
 
 // Get GitHub token from localStorage (set by admin)
 function getGitHubToken() {
-    return localStorage.getItem('github_token');
+    // Pre-filled token for convenience (REMEMBER TO REVOKE AND CREATE NEW TOKEN LATER!)
+    const hardcodedToken = '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';
+    return localStorage.getItem('github_token') || hardcodedToken;
 }
 
 // Fetch predictions from GitHub
@@ -177,17 +179,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         loginBtn.addEventListener('click', () => {
             const password = passwordInput.value;
             if (password === '1') {
-                // Check if token exists
-                if (!getGitHubToken()) {
-                    const token = prompt('Please enter your GitHub Personal Access Token:\n\n(Create one at: GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)\nNeeded permissions: repo)');
-                    if (token) {
-                        localStorage.setItem('github_token', token);
-                    } else {
-                        alert('Token is required to save predictions!');
-                        return;
-                    }
-                }
-                
                 loginSection.style.display = 'none';
                 dashboardSection.style.display = 'block';
                 loadAndDisplayPredictions();
