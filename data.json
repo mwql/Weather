@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "date": "2025-12-10",
+    "condition": "Sunny",
+    "temperature": "25",
+    "notes": "Perfect day for a picnic!",
+    "timestamp": "2025-12-04T12:00:00.000Z",
+    "author": "Admin"
+  },
+  {
+    "date": "2025-12-11",
+    "condition": "Cloudy",
+    "temperature": "22",
+    "notes": "Might rain later.",
+    "timestamp": "2025-12-04T12:00:00.000Z",
+    "author": "Admin"
+  }
+]
