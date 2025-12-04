@@ -1,11 +1,21 @@
 [
   {
+    "date": "2025-12-4",
+    "toDate": "2025-12-6",
+    "condition": "Cloudy",
+    "temperature": "21",
+    "notes": "good weather",
+    "timestamp": "2025-12-04T12:00:00.000Z",
+    "author": "Admin"
+  },
+  {
     "date": "2025-12-10",
-    "toDate": "2025-12-15",
-    "condition": "Sunny",
-    "temperature": "25",
-    "notes": "Perfect day for a picnic!",
+    "toDate": "2025-12-20",
+    "condition": "Rainy",
+    "temperature": "19",
+    "notes": "20% rain",
     "timestamp": "2025-12-04T12:00:00.000Z",
     "author": "Admin"
   }
 ]
+
