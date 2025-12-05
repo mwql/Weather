@@ -62,6 +62,7 @@ function displayPredictions(predictions) {
         else if (pred.condition.includes('Stormy')) icon = '⛈️';
         else if (pred.condition.includes('Snowy')) icon = '❄️';
         else if (pred.condition.includes('Windy')) icon = '💨';
+        else if (pred.condition.includes('drasy')) icon = '📚';
         else if (pred.condition.includes('3aly')) icon = '🧑‍🧑‍🧒‍🧒';
         
         // Normalize and parse date
@@ -120,4 +121,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         setInterval(loadAndDisplayPredictions, 60000);
     }
 });
+
 
