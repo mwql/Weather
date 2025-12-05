@@ -9,11 +9,11 @@
     "author": "Admin"
   },
   {
-    "date": "2025-12-5",
-    "toDate": "2025-12-5",
-    "condition": "3aly",
+    "date": "2025-12-6",
+    "toDate": "2025-12-25",
+    "condition": "drasy",
     "temperature": "20",
-    "notes": "ajwa@ 3alyh",
+    "notes": "ajwa@ drasyh 93bh",
     "timestamp": "2025-12-04T12:00:00.000Z",
     "author": "Admin"
   },
@@ -27,5 +27,6 @@
     "author": "Admin"
   }
 ]
+
 
 
