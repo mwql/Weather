@@ -9,6 +9,15 @@
     "author": "Admin"
   },
   {
+    "date": "2025-12-5",
+    "toDate": "2025-12-5",
+    "condition": "3aly",
+    "temperature": "20",
+    "notes": "ajwa@ 3alyh",
+    "timestamp": "2025-12-04T12:00:00.000Z",
+    "author": "Admin"
+  },
+  {
     "date": "2025-12-10",
     "toDate": "2025-12-20",
     "condition": "Rainy",
@@ -18,4 +27,5 @@
     "author": "Admin"
   }
 ]
+
 
