@@ -1,10 +1,10 @@
 [
   {
-    "date": "2025-12-4",
-    "toDate": "2025-12-6",
-    "condition": "Cloudy",
-    "temperature": "21",
-    "notes": "good weather",
+    "date": "2025-12-9",
+    "toDate": "2025-12-15",
+    "condition": "Rainy",
+    "temperature": "18",
+    "notes": "I think it will be rainy and beautiful",
     "timestamp": "2025-12-04T12:00:00.000Z",
     "author": "Admin"
   },
@@ -27,6 +27,7 @@
     "author": "Admin"
   }
 ]
+
 
 
 
