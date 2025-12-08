@@ -2,7 +2,7 @@
   {
     "date": "2025-12-9",
     "toDate": "2025-12-15",
-    "condition": "Rainy"،
+    "condition": "Rainy", 
     "fog": "70%",
     "temperature": "18",
     "notes": "I think it will be rainy and beautiful",
@@ -28,6 +28,7 @@
     "author": "Admin"
   }
 ]
+
 
 
 
