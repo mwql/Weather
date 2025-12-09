@@ -2,19 +2,10 @@
   
   {
     "date": "2025-12-9",
-    "toDate": "2025-12-9",
-    "condition": "Cloudy",
-    "temperature": "22",
-    "notes": "رطوبة %70",
-    "timestamp": "2025-12-04T12:00:00.000Z",
-    "author": "Admin"
-  },
-  {
-    "date": "2025-12-9",
-    "toDate": "2025-12-15",
+    "toDate": "2025-12-13",
     "condition": "Rainy",
-    "temperature": "18",
-    "notes": "I think it will be rainy and beautiful",
+    "temperature": "20",
+    "notes": "رطوبة %80",
     "timestamp": "2025-12-04T12:00:00.000Z",
     "author": "Admin"
   },
@@ -37,6 +28,7 @@
     "author": "Admin"
   }
 ]
+
 
 
 
