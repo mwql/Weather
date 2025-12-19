@@ -1,4 +1,30 @@
+// =============================
+// LIVE KUWAIT WEATHER API (ADDED)
+// =============================
+const KUWAIT_API_KEY = "6cf6b597227cd3370b52a776ca5824ac";
+const KUWAIT_WEATHER_URL =
+  `https://api.openweathermap.org/data/2.5/weather?q=Kuwait&units=metric&appid=${KUWAIT_API_KEY}`;
+
+async function fetchLiveKuwaitWeather() {
+    try {
+        const response = await fetch(KUWAIT_WEATHER_URL);
+        if (!response.ok) throw new Error("Weather API error");
+        const data = await response.json();
+
+        return {
+            temp: Math.round(data.main.temp),
+            desc: data.weather[0].description,
+            icon: data.weather[0].icon
+        };
+    } catch (error) {
+        console.error("Live weather error:", error);
+        return null;
+    }
+}
+
+// ----------------------------------
 // Fetch predictions from local data.json
+// ----------------------------------
 async function loadPredictions() {
     try {
         const response = await fetch('data.json?t=' + Date.now()); // Cache busting
@@ -15,14 +41,37 @@ async function loadPredictions() {
     }
 }
 
+// ----------------------------------
 // Display predictions on the page
-function displayPredictions(predictions) {
+// ----------------------------------
+async function displayPredictions(predictions) {
     const listContainer = document.getElementById('predictions-list');
     const targetDateDisplay = document.getElementById('target-date-display');
     
     if (!listContainer) return;
     
     listContainer.innerHTML = '';
+
+    // -----------------------------
+    // LIVE KUWAIT WEATHER CARD (ADDED)
+    // -----------------------------
+    const liveWeather = await fetchLiveKuwaitWeather();
+    if (liveWeather) {
+        const liveCard = document.createElement('div');
+        liveCard.className = 'prediction-card';
+
+        liveCard.innerHTML = `
+            <div class="weather-icon">
+                <img src="https://openweathermap.org/img/wn/${liveWeather.icon}@2x.png" alt="">
+            </div>
+            <div class="prediction-details">
+                <h4>Kuwait (Live Now)</h4>
+                <p class="temp">${liveWeather.temp}°C</p>
+                <p class="note">${liveWeather.desc}</p>
+            </div>
+        `;
+        listContainer.appendChild(liveCard);
+    }
     
     // Normalize date format (handles "2026-1-1" -> "2026-01-01")
     function normalizeDate(dateStr) {
@@ -47,7 +96,7 @@ function displayPredictions(predictions) {
     }
     
     if (predictions.length === 0) {
-        listContainer.innerHTML = '<p class="empty-state">No official forecasts yet.</p>';
+        listContainer.innerHTML += '<p class="empty-state">No official forecasts yet.</p>';
         return;
     }
     
@@ -89,7 +138,12 @@ function displayPredictions(predictions) {
         card.innerHTML = `
             <div class="weather-icon">${icon}</div>
             <div class="prediction-details">
-                <h4>${pred.condition} <span style="font-size: 0.8rem; opacity: 0.6; font-weight: normal;">(${dateRange})</span></h4>
+                <h4>
+                    ${pred.condition}
+                    <span style="font-size: 0.8rem; opacity: 0.6; font-weight: normal;">
+                        (${dateRange})
+                    </span>
+                </h4>
                 <p class="temp">${pred.temperature}°C</p>
                 ${pred.notes ? `<p class="note">${pred.notes}</p>` : ''}
             </div>
@@ -98,7 +152,9 @@ function displayPredictions(predictions) {
     });
 }
 
+// ----------------------------------
 // Initialize the app
+// ----------------------------------
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. Display "Today" on other.html
     const inlineDateDisplay = document.getElementById('target-date-inline');
@@ -113,33 +169,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         displayPredictions(predictions);
     }
     
-    // Initial load (only loads once when page is opened/refreshed)
+    // Initial load + refresh every 60 seconds
     if (document.getElementById('predictions-list')) {
         loadAndDisplayPredictions();
-        
-        // Poll for updates every 60 seconds
         setInterval(loadAndDisplayPredictions, 60000);
     }
 });
-const apiKey = "e89f102cfd638cfbd540bdf7fa673649";
-const city = "Kuwait";
-const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${apiKey}`;
-
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    const temp = Math.round(data.main.temp);
-    const desc = data.weather[0].description;
-    const iconCode = data.weather[0].icon;
-
-    document.getElementById("temp").innerText = `${temp}°C`;
-    document.getElementById("desc").innerText = desc;
-    document.getElementById("icon").innerHTML =
-      `<img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="">`;
-  })
-  .catch(() => {
-    document.getElementById("desc").innerText = "Unable to load weather data";
-  });
-
-
-
