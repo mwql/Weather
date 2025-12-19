@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureCast | Other Forecasts</title>
+    <title>FutureCast | Kuwait Live Weather</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- نفس ملف الستايل بدون أي تغيير -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="background-blobs">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -17,46 +21,23 @@
 
     <div class="main-container glass-panel">
         <header>
-            <a href="index.html"><img src="img/Mahdi_dji1.png" alt="" width="280" height="41" ;"></a>
-            <p class="subtitle">What the experts say for <span id="target-date-inline">Today</span></p>
+            <a href="index.html">
+                <img src="img/Mahdi_dji1.png" alt="" width="280" height="41">
+            </a>
+            <p class="subtitle">
+                Live weather forecast for <span id="target-date-inline">Kuwait</span>
+            </p>
         </header>
 
         <section class="predictions-list-section">
             <div class="predictions-grid">
-                
-                <div class="prediction-card">
-                    <div class="weather-icon">🌤️</div>
-                    <div class="prediction-details">
-                        <h4>Weather.com</h4>
-                        <p class="temp">22°C</p>
-                        <p class="note">Partly Cloudy, chance of rain 10%</p>
-                    </div>
-                </div>
 
                 <div class="prediction-card">
-                    <div class="weather-icon">🌧️</div>
+                    <div class="weather-icon" id="weatherIcon">⏳</div>
                     <div class="prediction-details">
-                        <h4>AccuWeather</h4>
-                        <p class="temp">19°C</p>
-                        <p class="note">Light rain expected in the afternoon</p>
-                    </div>
-                </div>
-
-                <div class="prediction-card">
-                    <div class="weather-icon">☀️</div>
-                    <div class="prediction-details">
-                        <h4>BBC Weather</h4>
-                        <p class="temp">24°C</p>
-                        <p class="note">Sunny spells, light breeze</p>
-                    </div>
-                </div>
-
-                <div class="prediction-card">
-                    <div class="weather-icon">⛈️</div>
-                    <div class="prediction-details">
-                        <h4>Dark Sky</h4>
-                        <p class="temp">20°C</p>
-                        <p class="note">Thunderstorms likely in the evening</p>
+                        <h4>Kuwait (Live)</h4>
+                        <p class="temp" id="temperature">--°C</p>
+                        <p class="note" id="description">Loading weather data...</p>
                     </div>
                 </div>
 
@@ -68,8 +49,29 @@
         </footer>
     </div>
 
-    <script type="module" src="script.js"></script>
+    <!-- JavaScript للطقس الحي -->
+    <script>
+        const apiKey = "YOUR_API_KEY"; // ← حط مفتاحك هنا
+        const city = "Kuwait";
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const temp = Math.round(data.main.temp);
+                const desc = data.weather[0].description;
+                const icon = data.weather[0].icon;
+
+                document.getElementById("temperature").innerText = temp + "°C";
+                document.getElementById("description").innerText = desc;
+                document.getElementById("weatherIcon").innerHTML =
+                    `<img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="">`;
+            })
+            .catch(() => {
+                document.getElementById("description").innerText =
+                    "Unable to load live weather data";
+            });
+    </script>
+
 </body>
 </html>
-
-
