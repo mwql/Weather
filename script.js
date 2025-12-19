@@ -121,5 +121,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         setInterval(loadAndDisplayPredictions, 60000);
     }
 });
+const apiKey = "e89f102cfd638cfbd540bdf7fa673649";
+const city = "Kuwait";
+const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=en&appid=${apiKey}`;
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    const temp = Math.round(data.main.temp);
+    const desc = data.weather[0].description;
+    const iconCode = data.weather[0].icon;
+
+    document.getElementById("temp").innerText = `${temp}°C`;
+    document.getElementById("desc").innerText = desc;
+    document.getElementById("icon").innerHTML =
+      `<img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="">`;
+  })
+  .catch(() => {
+    document.getElementById("desc").innerText = "Unable to load weather data";
+  });
+
 
 
